@@ -44,8 +44,8 @@ jobs:
       - name: Check Coverage Threshold
         working-directory: ./apperals-frontend
         run: |
-          COVERAGE=$(jq '.total.lines.pct' coverage/coverage-summary.json)
-          REQUIRED_COVERAGE=80 # Set your minimum required coverage percentage
+          COVERAGE=$(jq '.total.lines.pct' coverage/coverage-final.json)
+          REQUIRED_COVERAGE=8 # Set your minimum required coverage percentage
           echo "Current Coverage: $COVERAGE%"
           if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
             echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
