@@ -37,9 +37,15 @@
     ]
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.test.{js,jsx,ts,tsx}",
+      "!src/serviceWorker.js",
+      "!src/setupTests.js"
+    ],
     "coverageThreshold": {
       "global": {
-        "lines": 5
+        "lines": 80
       }
     }
   }
