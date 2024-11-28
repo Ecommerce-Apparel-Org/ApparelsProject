@@ -3,7 +3,7 @@ name: PR Code Coverage and Build Check
 on:
   pull_request:
     branches:
-      - main # Replace with your target branch
+      - main # Target branch for pull requests
 
 jobs:
   build-and-test:
@@ -14,26 +14,35 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js environment
+      # Step 2: Navigate to the React app directory
+      - name: Navigate to Apparels Frontend
+        working-directory: ./apparels-frontend
+        run: echo "Changed working directory to apparels-frontend"
+
+      # Step 3: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16 # Use your React app's Node.js version
+          node-version: 16 # Use the Node.js version your app requires
 
-      # Step 3: Install dependencies
+      # Step 4: Install dependencies
       - name: Install Dependencies
+        working-directory: ./apparels-frontend
         run: npm install
 
-      # Step 4: Build the application
+      # Step 5: Build the application
       - name: Build Application
+        working-directory: ./apparels-frontend
         run: npm run build
 
-      # Step 5: Run tests with coverage
+      # Step 6: Run tests with coverage
       - name: Run Tests with Coverage
+        working-directory: ./apparels-frontend
         run: npm test -- --coverage
 
-      # Step 6: Validate coverage threshold
+      # Step 7: Validate coverage threshold
       - name: Check Coverage Threshold
+        working-directory: ./apperals-frontend
         run: |
           COVERAGE=$(jq '.total.lines.pct' coverage/coverage-summary.json)
           REQUIRED_COVERAGE=80 # Set your minimum required coverage percentage
@@ -43,9 +52,9 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Upload coverage reports as artifacts (optional)
+      # Step 8: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
         with:
           name: coverage-reports
-          path: coverage/
+          path: ./apparels-frontend/coverage/
