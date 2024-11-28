@@ -38,7 +38,7 @@ jobs:
       # Step 6: Run tests with coverage
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
-        run: npm test -- --coverage --watchAll
+        run: npm test -- --coverage
 
       # Step 7: Validate coverage threshold
       - name: Check Coverage Threshold
