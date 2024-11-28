@@ -16,7 +16,7 @@ jobs:
 
       # Step 2: Navigate to the React app directory
       - name: Navigate to Apparels Frontend
-        working-directory: ./apparels-frontend
+        working-directory: ./apperals-frontend
         run: echo "Changed working directory to apparels-frontend"
 
       # Step 3: Set up Node.js environment
