@@ -1,0 +1,51 @@
+name: PR Code Coverage and Build Check
+
+on:
+  pull_request:
+    branches:
+      - main # Replace with your target branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16 # Use your React app's Node.js version
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Build the application
+      - name: Build Application
+        run: npm run build
+
+      # Step 5: Run tests with coverage
+      - name: Run Tests with Coverage
+        run: npm test -- --coverage
+
+      # Step 6: Validate coverage threshold
+      - name: Check Coverage Threshold
+        run: |
+          COVERAGE=$(jq '.total.lines.pct' coverage/coverage-summary.json)
+          REQUIRED_COVERAGE=80 # Set your minimum required coverage percentage
+          echo "Current Coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
+            echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
+            exit 1
+          fi
+
+      # Step 7: Upload coverage reports as artifacts (optional)
+      - name: Upload Coverage Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-reports
+          path: coverage/
