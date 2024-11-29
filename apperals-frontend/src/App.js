@@ -1,10 +1,9 @@
 // import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import ButtonRow from './components/navigation/ButtonRow';
-import Page1 from './components/navigation/Page1';
-import Page2 from './components/navigation/Page2';
-
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ButtonRow from "./components/navigation/ButtonRow";
+import Page1 from "./components/navigation/Page1";
+import Page2 from "./components/navigation/Page2";
 
 // function App() {
 //   return (
@@ -28,7 +27,6 @@ import Page2 from './components/navigation/Page2';
 // }
 
 // export default App;
-
 
 function App() {
   return (
