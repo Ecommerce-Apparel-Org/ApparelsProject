@@ -30,6 +30,12 @@ ButtonRow.js
 Page1.js
 Page2.js
 
+In src/components/FAQMain
+
+src/components/FAQMain/FAQComponent/FAQ.js
+src/components/FAQMain/style
+
+
 In src/
  src/App.css
  src/App.js

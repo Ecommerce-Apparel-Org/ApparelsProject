@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import ButtonRow from './components/navigation/ButtonRow';
 import Page1 from './components/navigation/Page1';
 import Page2 from './components/navigation/Page2';
+import FAQ from "./components/FAQMain/FAQComponent/FAQ";
 
 
 // function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<ButtonRow />} />
           <Route path="/page1" element={<Page1 />} />
           <Route path="/page2" element={<Page2 />} />
+            <Route path="/FAQ" element={<FAQ/>} />
         </Routes>
       </div>
     </Router>
