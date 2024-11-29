@@ -1,6 +1,14 @@
 File and Folder Info
 
 Folders
+root
+main.css
+tailwind.config.js
+yarn.lock
+package.json
+package-lock.json
+
+
 
 public
 
@@ -46,4 +54,6 @@ In src/
  reportWebVitals.js
  setupTests.js
 
+Installations
+framer motion installed
 
