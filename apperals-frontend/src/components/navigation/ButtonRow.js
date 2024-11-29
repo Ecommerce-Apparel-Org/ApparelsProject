@@ -18,9 +18,15 @@ function ButtonRow() {
             <Link to="/page2">
               <button>Page 2</button>
             </Link>
-            <button>Button 3</button>
-            <button>Button 4</button>
-            <button>Button 5</button>
+            <Link to="/page3">
+              <button>Page 3</button>
+            </Link>
+            <Link to="/page4">
+              <button>Page 4</button>
+            </Link>
+            <Link to="/page5">
+              <button>Page 5</button>
+            </Link>
           </div>
         </div>
 

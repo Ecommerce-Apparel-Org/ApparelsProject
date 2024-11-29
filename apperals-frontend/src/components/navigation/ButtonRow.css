@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 1250px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -13,16 +13,17 @@
 
 .button-row {
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: center; 
     gap: 20px;
+    flex-wrap: wrap;  /* Allow buttons to wrap on smaller screens */
 }
 
 button {
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
-    width: 160px;
-    height: 35px;
+    width: 170px;
+    height: 50px;
     border: none;
     outline: none;
     background-color: #f6f6f6;
@@ -31,15 +32,19 @@ button {
 .title-row {
     display: flex;
     justify-content: space-between;
+    flex-direction: row; /* Stack title and button row on top of each other */
     width: 100%;
     align-items: center;
     margin-bottom: 20px;
+    gap: 20px;
 }
 
 .title {
     font-size: 32px;
     font-weight: bold;
-    white-space: nowrap;
+    text-align: center;
+    margin-bottom: 20px;
+    /* white-space: nowrap; */
 }
 
 .image-container {
@@ -48,17 +53,25 @@ button {
     height: 500px;
     display: flex;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: -60px;
+
+    /* background image*/
+    background-image: url('../../assets/A_black_background.jpg'); /* Path to your image */
+    background-size: cover; /* Make sure the image covers the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    border: 2px solid red;  /* Add a red border to visualize the container */
 }
 
+/* use background image
 .image-container img {
     width: 100%;     
     max-width: 1250px; 
-    /* height: auto;     */
     object-fit: cover;
     object-position: center;
-}
+} */
 
 .image-button {
     position: absolute;
@@ -88,4 +101,5 @@ button {
     color: rgb(1, 249, 75);
     font-weight: bold;
     text-align: center;
+    display: flex;
 }
