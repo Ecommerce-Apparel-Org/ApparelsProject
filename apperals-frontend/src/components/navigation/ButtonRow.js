@@ -1,6 +1,6 @@
 import React from 'react';
 import './ButtonRow.css';
-import fashionImage from '../assets/A_black_background.jpg';
+/*import fashionImage from '../assets/A_black_background.jpg';*/
 import { Link } from 'react-router-dom';
 
 function ButtonRow() {
@@ -25,10 +25,10 @@ function ButtonRow() {
         </div>
 
         <div class="image-container">
-          <img 
+          {/* <img 
             src="{fashionImage}" 
             alt="Fashion image">
-          </img>
+          </img> */}
           <div className="image-text">
             <p>Elevate Your Style</p>
           </div>
