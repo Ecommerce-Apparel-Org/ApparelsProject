@@ -1,1 +1,10 @@
-Dummy first version needs to be added more
+File and Folder Info
+
+Folders
+
+public
+
+
+components
+components/navigation
+
