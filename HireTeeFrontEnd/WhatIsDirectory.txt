@@ -1,0 +1,6 @@
+  HireTeeFrontEnd/HireTee/public
+  HireTeeFrontEnd/HireTee/src
+    HireTeeFrontEnd/HireTee/src/App.jsx
+  HireTeeFrontEnd/HireTee/src/assets
+  HireTeeFrontEnd/HireTee/src/components
+   HireTeeFrontEnd/HireTee/src/components/FAQ.jsx
