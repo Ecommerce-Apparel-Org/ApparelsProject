@@ -77,6 +77,7 @@ nav a:hover {
 @media (max-width: 800px) {
     /* center header and align with hamburger menu */
     header {
+        flex-grow: 1;
         justify-content: center;
     }
 
@@ -91,5 +92,24 @@ nav a:hover {
 
     .hamburger {
         display: flex;
+    }
+
+    .hamburger-active nav ul  {
+        display: flex;
+        flex-direction: column; /* Stack the navigation items vertically */
+        gap: 20px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: rgb(181, 0, 0);
+        padding: 10px 0;
+        text-align: left;
+        z-index: 1000; /* Ensure it's on top */
+    }
+
+    nav li {
+        display: flex; /* Make each list item a block element */
+        color: white;
     }
 }

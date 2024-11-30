@@ -12,6 +12,8 @@ const Navigation = () => {
     // Function to toggle the menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+        console.log("Menu open: ", !isMenuOpen)
+        console.log('nav class:', document.querySelector('nav').className);
     };
 
     return (
@@ -27,7 +29,8 @@ const Navigation = () => {
             </div>
 
             {/* Navigation links */}
-            <nav className={isMenuOpen ? 'navbar-active' : ''}> {/* display normally if false */}
+            <nav className={isMenuOpen ? 'hamburger-active' : ''}> {/* display normally if false */}
+
                 <ul>
                     <li>
                         <a href='/'><FaHome />Home</a>
@@ -50,4 +53,4 @@ const Navigation = () => {
     )
 }
 
-export default Navigation
+export default Navigation   
