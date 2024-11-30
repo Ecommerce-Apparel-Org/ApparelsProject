@@ -11,6 +11,7 @@
     position: relative;
 }
 
+/* button bar */
 .button-row {
     display: flex;
     justify-content: center; 
@@ -29,6 +30,7 @@ button {
     background-color: #f6f6f6;
 }
 
+/* title bar */
 .title-row {
     display: flex;
     justify-content: space-between;
@@ -47,6 +49,29 @@ button {
     /* white-space: nowrap; */
 }
 
+/* Hamburger menu */
+.hamburger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid red;
+    position: absolute; /* Position it in the top-left corner */
+    top: 20px; 
+    left: 20px;
+  }
+
+/* Mobile menu hidden when not mobile screen */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+/* background image static */
 .image-container {
     position: relative;
     width: 100%;
@@ -64,14 +89,6 @@ button {
     background-repeat: no-repeat; /* Prevent repeating the image */
     border: 2px solid red;  /* Add a red border to visualize the container */
 }
-
-/* use background image
-.image-container img {
-    width: 100%;     
-    max-width: 1250px; 
-    object-fit: cover;
-    object-position: center;
-} */
 
 .image-button {
     position: absolute;
@@ -95,11 +112,40 @@ button {
 
 .image-text {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: rgb(1, 249, 75);
+    color: rgb(240, 240, 240);
     font-weight: bold;
+    font-size: 300%;
     text-align: center;
     display: flex;
+}
+
+.image-text-two {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(240, 240, 240);
+    font-weight: bold;
+    font-size: 130%;
+    text-align: center;
+    display: flex;
+}
+
+/* Media Queries */
+/* adjust for small screens */
+@media screen and (max-width: 750px) {
+    .button-row {
+      display: none;
+    }
+  
+    .hamburger-icon {
+      display: grid;
+    }
+
+    .mobile-menu.open {
+        display: flex;
+    }    
 }
