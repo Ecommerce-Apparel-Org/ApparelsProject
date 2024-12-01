@@ -39,7 +39,11 @@ jobs:
       # Step 6: Run tests with coverage
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
-        run: npm test --coverage
+        run: |
+          echo "Running tests with coverage..."
+          CI=false npm test --coverage
+          echo "Test results and coverage should now be available."
+          ls -al ./apperals-frontend/coverage
 
       # Step 7: Validate coverage threshold
       - name: Check Coverage Threshold
