@@ -45,8 +45,17 @@ jobs:
       - name: Check Coverage Threshold
         working-directory: ./apperals-frontend
         run: |
-          # Calculate the coverage from the final coverage JSON
-          COVERAGE=$(jq '[.[] | .s | to_entries | map(.value) | add] | add / ([.[] | .s | to_entries | length] | add) * 100' coverage/coverage-final.json)
+          # List contents of the coverage directory for debugging
+          ls -al ./apperals-frontend/coverage
+      
+          # Ensure coverage-final.json exists
+          if [ ! -f ./apperals-frontend/coverage/coverage-final.json ]; then
+            echo "coverage-final.json not found!"
+            exit 1
+          fi
+      
+          # Calculate coverage from the JSON file
+          COVERAGE=$(jq '[.[] | .s | to_entries | map(.value) | add] | add / ([.[] | .s | to_entries | length] | add) * 100' ./apperals-frontend/coverage/coverage-final.json)
           
           # Set the required coverage percentage
           REQUIRED_COVERAGE=80
