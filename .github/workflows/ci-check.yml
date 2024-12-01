@@ -39,17 +39,17 @@ jobs:
       # Step 6: Run tests with coverage
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
-        run: npm test -- --coverage
+        run: npm test --coverage
 
       # Step 7: Validate coverage threshold
       - name: Check Coverage Threshold
         working-directory: ./apperals-frontend
         run: |
-          # Calculate the coverage
+          # Calculate the coverage from the final coverage JSON
           COVERAGE=$(jq '[.[] | .s | to_entries | map(.value) | add] | add / ([.[] | .s | to_entries | length] | add) * 100' coverage/coverage-final.json)
           
           # Set the required coverage percentage
-          REQUIRED_COVERAGE=8
+          REQUIRED_COVERAGE=80
           
           # Round the coverage to 2 decimal places for display
           COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
@@ -57,7 +57,7 @@ jobs:
           echo "Current Coverage: $COVERAGE_ROUNDED%"
           
           # Compare coverage with the required threshold
-          if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
+          if (( $(echo "$COVERAGE_ROUNDED < $REQUIRED_COVERAGE" | bc -l) )); then
             echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
             exit 1
           fi
