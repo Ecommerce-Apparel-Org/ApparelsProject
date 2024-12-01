@@ -20,10 +20,10 @@ jobs:
         run: echo "Changed working directory to apperals-frontend"
 
       # Step 3: Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16 # Use the Node.js version your app requires
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16 # Use the Node.js version your app requires
 
       # Step 4: Install dependencies
       - name: Install Dependencies
@@ -51,16 +51,23 @@ jobs:
           # Optional: Additional flags for Codecov (e.g., flags to enforce thresholds)
           flags: unittests
 
-      # Step 8: Optional: Enforce Coverage Thresholds (if needed)
+      # Step 8: Enforce Coverage Threshold (using Codecov API)
       - name: Enforce Coverage Threshold
         run: |
-          # You can check Codecov's coverage percentage with Codecov API or enforce custom logic if desired
-          curl -s https://codecov.io/api/gh/NikhilRajivOke/ApparelsProject/commit/${{ github.sha }} | jq .coverage > coverage_percentage
-          COVERAGE=$(cat coverage_percentage)
+          # Fetch the coverage report from Codecov using the API with authentication
+          COVERAGE=$(curl -s --header "Authorization: token ${{ secrets.CODECOV_API_TOKEN }}" \
+          https://codecov.io/api/gh/NikhilRajivOke/ApparelsProject/commit/${{ github.sha }} | jq -r '.coverage')
           
+          # Check if the coverage is fetched successfully
+          if [ -z "$COVERAGE" ]; then
+            echo "Error: Could not retrieve coverage data from Codecov"
+            exit 1
+          fi
+
           REQUIRED_COVERAGE=80
           echo "Current Coverage: $COVERAGE%"
 
+          # Compare the current coverage with the required threshold
           if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
             echo "Coverage is below the required threshold of $REQUIRED_COVERAGE%"
             exit 1
