@@ -44,40 +44,21 @@ jobs:
       - name: Validate JSON
         working-directory: ./apperals-frontend
         run: |
-          if ! jq -e . coverage/coverage-final.json > /dev/null 2>&1; then
+          jq . coverage/coverage-final.json > /dev/null 2>&1
+          if [[ $? -ne 0 ]]; then
             echo "Invalid JSON in coverage-final.json"
             exit 1
           fi
         
-      # Step 8: Validate coverage threshold (Branch coverage only)
-      - name: Check Coverage Threshold
-        working-directory: ./apperals-frontend
-        run: |
-          # Normalize paths (optional, but recommended)
-          sed -i 's/\\/\//g' coverage/coverage-final.json 
-
-          # Calculate the branch coverage 
-          COVERAGE=$(jq '[ 
-            .[] | 
-            (
-              ((.b // {}) | to_entries | map(.value) | add) / 
-              (if ((.b // {}) | length) > 0 then ((.b // {}) | length) else 1 end) * 100 
-            )
-          ] | add / length' coverage/coverage-final.json)
-          
-          # Set the required coverage percentage
-          REQUIRED_COVERAGE=80
-          
-          # Round the coverage to 2 decimal places for display
-          COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
-          
-          echo "Current Branch Coverage: $COVERAGE_ROUNDED%"
-          
-          # Compare coverage with the required threshold
-          if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
-            echo "Branch coverage is below the required threshold of $REQUIRED_COVERAGE%"
-            exit 1
-          fi
+      # Step 8: Enforce Coverage Thresholds
+      - name: Enforce Coverage Thresholds
+        uses: romeovs/jest-coverage-comment@v1
+        with:
+          fail_on_error: true 
+          check_branches: 80 # Or your desired branch coverage
+          check_functions: 80 # Or your desired function coverage
+          check_lines: 80 # Or your desired line coverage
+          check_statements: 80 # Or your desired statement coverage
 
       # Step 9: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
