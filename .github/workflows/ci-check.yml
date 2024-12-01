@@ -47,21 +47,21 @@ jobs:
           # Normalize paths (optional, but recommended)
           sed -i 's/\\/\//g' coverage/coverage-final.json 
 
-          # Calculate the coverage
+          # Calculate the coverage (with null checks)
           COVERAGE=$(jq '[ 
             .[] | 
             (
               (
-                (.s | to_entries | map(.value) | add) / 
-                (if (.s | length) > 0 then (.s | length) else 1 end) * 100 
+                ((.s // {}) | to_entries | map(.value) | add) / 
+                (if ((.s // {}) | length) > 0 then ((.s // {}) | length) else 1 end) * 100 
               ) + 
               (
-                (.f | to_entries | map(.value) | add) / 
-                (if (.f | length) > 0 then (.f | length) else 1 end) * 100
+                ((.f // {}) | to_entries | map(.value) | add) / 
+                (if ((.f // {}) | length) > 0 then ((.f // {}) | length) else 1 end) * 100
               ) + 
               (
-                (.b | to_entries | map(.value) | add) / 
-                (if (.b | length) > 0 then (.b | length) else 1 end) * 100
+                ((.b // {}) | to_entries | map(.value) | add) / 
+                (if ((.b // {}) | length) > 0 then ((.b // {}) | length) else 1 end) * 100
               )
             ) / 3 
           ] | add / length' coverage/coverage-final.json)
