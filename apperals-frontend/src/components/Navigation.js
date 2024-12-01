@@ -12,7 +12,7 @@ const Navigation = () => {
     // Function to toggle the menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-        console.log("Menu open: ", !isMenuOpen)
+        console.log("Menu open: ", isMenuOpen)
         console.log('nav class:', document.querySelector('nav').className);
     };
 
@@ -22,15 +22,11 @@ const Navigation = () => {
             <h1><FaAdjust />Fashion Fusion</h1>
 
             {/* Hamburger menu */}
-            <div className='hamburger' onClick={toggleMenu}>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+            <FaBars className='hamburger' onClick={toggleMenu}></FaBars>
 
             {/* Navigation links */}
+            {/* if true, apply class, otherwise, no class applied */}
             <nav className={isMenuOpen ? 'hamburger-active' : ''}> {/* display normally if false */}
-
                 <ul>
                     <li>
                         <a href='/'><FaHome />Home</a>

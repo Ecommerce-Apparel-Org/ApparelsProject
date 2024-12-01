@@ -66,13 +66,6 @@ nav a:hover {
     left: 20px;
 }
 
-.hamburger div { /* customize hamburger menu lines */
-    width: 25px;
-    height: 3px;
-    background-color: #000;
-    border-radius: 5px;
-}
-
 /* Media query for hamburger */
 @media (max-width: 800px) {
     /* center header and align with hamburger menu */
@@ -86,15 +79,19 @@ nav a:hover {
         text-align: center;
     }
 
-    nav ul {
+    nav ul   {
         display: none;
+    }
+
+    ul {
+        display: block;
     }
 
     .hamburger {
         display: flex;
     }
 
-    .hamburger-active nav ul  {
+    .hamburger-active {
         display: flex;
         flex-direction: column; /* Stack the navigation items vertically */
         gap: 20px;
@@ -105,7 +102,6 @@ nav a:hover {
         background-color: rgb(181, 0, 0);
         padding: 10px 0;
         text-align: left;
-        z-index: 1000; /* Ensure it's on top */
     }
 
     nav li {
