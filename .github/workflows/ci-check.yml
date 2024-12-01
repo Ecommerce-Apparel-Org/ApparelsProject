@@ -40,30 +40,20 @@ jobs:
         working-directory: ./apperals-frontend
         run: npm test -- --coverage
         
-      # Step 7: Validate coverage threshold
+      # Step 7: Validate coverage threshold (Branch coverage only)
       - name: Check Coverage Threshold
         working-directory: ./apperals-frontend
         run: |
           # Normalize paths (optional, but recommended)
           sed -i 's/\\/\//g' coverage/coverage-final.json 
 
-          # Calculate the coverage (with null checks)
+          # Calculate the branch coverage 
           COVERAGE=$(jq '[ 
             .[] | 
             (
-              (
-                ((.s // {}) | to_entries | map(.value) | add) / 
-                (if ((.s // {}) | length) > 0 then ((.s // {}) | length) else 1 end) * 100 
-              ) + 
-              (
-                ((.f // {}) | to_entries | map(.value) | add) / 
-                (if ((.f // {}) | length) > 0 then ((.f // {}) | length) else 1 end) * 100
-              ) + 
-              (
-                ((.b // {}) | to_entries | map(.value) | add) / 
-                (if ((.b // {}) | length) > 0 then ((.b // {}) | length) else 1 end) * 100
-              )
-            ) / 3 
+              ((.b // {}) | to_entries | map(.value) | add) / 
+              (if ((.b // {}) | length) > 0 then ((.b // {}) | length) else 1 end) * 100 
+            )
           ] | add / length' coverage/coverage-final.json)
           
           # Set the required coverage percentage
@@ -72,11 +62,11 @@ jobs:
           # Round the coverage to 2 decimal places for display
           COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
           
-          echo "Current Coverage: $COVERAGE_ROUNDED%"
+          echo "Current Branch Coverage: $COVERAGE_ROUNDED%"
           
           # Compare coverage with the required threshold
           if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
-            echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
+            echo "Branch coverage is below the required threshold of $REQUIRED_COVERAGE%"
             exit 1
           fi
 
