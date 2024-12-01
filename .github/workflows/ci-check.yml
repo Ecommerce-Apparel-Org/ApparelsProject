@@ -40,7 +40,28 @@ jobs:
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
         run: npm test -- --coverage
-              
+        
+      # Step 7: Validate coverage threshold
+      - name: Check Coverage Threshold
+        working-directory: ./apperals-frontend
+        run: |
+          # Calculate the coverage
+          COVERAGE=$(jq '[.[] | .s | to_entries | map(.value) | add] | add / ([.[] | .s | to_entries | length] | add) * 100' coverage/coverage-final.json)
+          
+          # Set the required coverage percentage
+          REQUIRED_COVERAGE=8
+          
+          # Round the coverage to 2 decimal places for display
+          COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
+          
+          echo "Current Coverage: $COVERAGE_ROUNDED%"
+          
+          # Compare coverage with the required threshold
+          if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
+            echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
+            exit 1
+          fi
+          
       # Step 8: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
