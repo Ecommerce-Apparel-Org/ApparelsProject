@@ -1,0 +1,42 @@
+.banner-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  .banner-video {
+    height: 45vw;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  color: var(--nav-link-color);
+  font-weight: bold;
+  text-align: left;
+  .elevate {
+    font-size: 4rem;
+  }
+  .sub-head{
+    width:60%;
+    text-wrap: wrap;
+    font-size:1.5rem;
+  }
+
+  .overlay-button{
+    background-color: transparent;
+    border:2px solid var(--nav-link-color);
+    border-radius:5px;
+    font-size: 1.5rem;
+    padding:3% 10%;
+    color:var(--nav-link-color);
+    &:hover{
+      background-color: var(--nav-link-color);
+      color:var(--color-shade);
+    }
+  }
+}
