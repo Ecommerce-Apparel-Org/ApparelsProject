@@ -50,15 +50,12 @@ jobs:
             exit 1
           fi
         
-      # Step 8: Enforce Coverage Thresholds
+      # Step 8: Enforce Coverage Thresholds (using jest-coverage-action)
       - name: Enforce Coverage Thresholds
-        uses: romeovs/jest-coverage-comment@v1
+        uses: ignatiusmb/jest-coverage-action@v1
         with:
-          fail_on_error: true 
-          check_branches: 80 # Or your desired branch coverage
-          check_functions: 80 # Or your desired function coverage
-          check_lines: 80 # Or your desired line coverage
-          check_statements: 80 # Or your desired statement coverage
+          threshold: 80 # Or your desired threshold
+          report-path: coverage/coverage-final.json 
 
       # Step 9: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
