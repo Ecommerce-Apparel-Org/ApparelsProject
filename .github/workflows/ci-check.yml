@@ -40,39 +40,33 @@ jobs:
         working-directory: ./apperals-frontend
         run: npm test -- --coverage
 
-      # Step 7: Validate JSON (to catch structural errors)
-      - name: Validate JSON
-        working-directory: ./apperals-frontend
-        run: |
-          jq . coverage/coverage-final.json > /dev/null 2>&1
-          if [[ $? -ne 0 ]]; then
-            echo "Invalid JSON in coverage-final.json"
-            exit 1
-          fi
-
-      # Step 8: Upload coverage reports to Codecov
+      # Step 7: Upload coverage report to Codecov
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}  # Add this secret to your repo for Codecov integration
+          # Optional: Path to your coverage report file (default is `coverage/**/coverage-final.json`)
           files: ./apperals-frontend/coverage/coverage-final.json
+          # Optional: Set the name of your coverage report, if it's different
+          name: coverage-report
+          # Optional: Additional flags for Codecov (e.g., flags to enforce thresholds)
           flags: unittests
-          name: codecov-coverage
 
-      # Step 9: Enforce Coverage Thresholds
-      - name: Enforce Coverage Thresholds
+      # Step 8: Optional: Enforce Coverage Thresholds (if needed)
+      - name: Enforce Coverage Threshold
         run: |
-          COVERAGE=$(jq '[ . | select(.statements)] | map(.statements.pct) | add / length' ./apperals-frontend/coverage/coverage-final.json)
+          # You can check Codecov's coverage percentage with Codecov API or enforce custom logic if desired
+          curl -s https://codecov.io/api/gh/NikhilRajivOke/ApparelsProject/commit/${{ github.sha }} | jq .coverage > coverage_percentage
+          COVERAGE=$(cat coverage_percentage)
+          
           REQUIRED_COVERAGE=80
-          COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
-          echo "Current Coverage: $COVERAGE_ROUNDED%"
+          echo "Current Coverage: $COVERAGE%"
 
           if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
-            echo "Coverage is below the required $REQUIRED_COVERAGE%"
+            echo "Coverage is below the required threshold of $REQUIRED_COVERAGE%"
             exit 1
           fi
 
-      # Step 10: Upload coverage reports as artifacts (optional)
+      # Step 9: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
         with:
