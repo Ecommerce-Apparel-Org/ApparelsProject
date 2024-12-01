@@ -8,4 +8,14 @@ module.exports = {
   moduleNameMapper: {
     "\\.(css|scss|sass)$": "identity-obj-proxy", // Mock styles
   },
+  collectCoverage: true, // Ensure coverage is collected
+  coverageThreshold: {
+    global: {
+      statements: 80, // Percentage of statements covered by tests
+      branches: 80, // Percentage of branches covered by tests
+      functions: 80, // Percentage of functions covered by tests
+      lines: 80, // Percentage of lines covered by tests
+    },
+  },
+  coverageReporters: ["json", "text", "lcov"],
 };
