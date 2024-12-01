@@ -1,12 +1,15 @@
 header {
     /* background-color: #282c34; */
     color: rgb(0, 0, 0);
-    padding: 20px 40px; /* Adds space around the content inside the header */
-    display: flex; /* Make the header a flex container */
-    justify-content: flex-start; /* Align items at the start (left) */
-    align-items: center; /* Vertically center the items */
+    /* Adds space around the content inside the header */
+    padding: 20px 40px;
+    /* Make the header a flex container */
+    display: flex;
+    /* Align items at the start (left) */
+    justify-content: flex-start;
+    /* gap between items */
     gap: 50px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 /* for icon and title adjustment */
@@ -14,23 +17,24 @@ header h1 {
     font-size: 32px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     color: rgb(8, 0, 0);
     margin: 0;
-    padding: 0;
 }
   
 nav ul {
-    list-style-type: none; /* Removes the bullet points */
+    /* Removes the bullet points */
+    list-style-type: none;
     padding: 0;
-    margin: 0;
     text-align: center;
 }
 
 nav li {
-    display: inline-block; /* Align items horizontally */
+    /* Align items horizontally */
+    display: inline-block; 
     align-items: center; 
-    margin: 0 30px; /* Adds horizontal spacing between the items */
+    /* Adds horizontal spacing between the items */
+    margin: 0 30px; 
     font-size: 18px;
     padding: 8px 12px;
     transition: background-color 0.3s ease;
@@ -38,7 +42,7 @@ nav li {
 
 nav a {
     color: rgb(0, 0, 0);
-    text-decoration: none;
+    /* text-decoration: none; */
     font-size: 18px;
     display: flex;           /* Use Flexbox to align icon and text horizontally */
     align-items: center;     /* Vertically align icon and text */
@@ -46,49 +50,52 @@ nav a {
 }
 
 /* icons */
-nav a svg {
-    font-size: 20px; /* Adjust the size of the icon */
-}
+/* nav a svg { */
+    /* Adjust the size of the icon */
+    /* font-size: 20px; 
+} */
 
 nav a:hover {
     text-decoration: underline;
-    color: deepskyblue;
+    color: rgb(13, 108, 139);
 }
 
 /* Hamburger Menu */
 .hamburger {
-    display: none; /* Hidden by default */
-    flex-direction: column;
+    /* Hidden by default */
+    display: none;
+    /* flex-direction: column;
     gap: 5px;
-    cursor: pointer;
-    position: absolute; /* top left corner */
+    cursor: pointer; */
+    /* top left corner */
+    /* position: absolute; 
     top: 20px;
-    left: 20px;
+    left: 20px; */
 }
 
 /* Media query for hamburger */
 @media (max-width: 800px) {
     /* center header and align with hamburger menu */
     header {
-        flex-grow: 1;
+        /* flex-grow: 1; */
         justify-content: center;
     }
 
-    header h1 {
+    /* header h1 {
         flex-grow: 1;
         text-align: center;
-    }
+    } */
 
     nav  {
         display: none;
     }
 
-    ul {
-        display: block;
-    }
-
     .hamburger {
         display: flex;
+        cursor: pointer;
+        position: absolute; 
+        top: 20px;
+        left: 20px;
     }
 
     .hamburger-active {
@@ -96,16 +103,17 @@ nav a:hover {
         flex-direction: column; /* Stack the navigation items vertically */
         gap: 20px;
         position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: rgb(181, 0, 0);
+        top: 20px;
+        left: 30px;
+        width: 30%;
+        background-color: rgb(206, 184, 184);
         padding: 10px 0;
         text-align: left;
     }
 
+    /* Make each list item a block element */
     nav li {
-        display: flex; /* Make each list item a block element */
+        display: flex;
         color: white;
     }
 }
