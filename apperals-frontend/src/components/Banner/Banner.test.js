@@ -6,7 +6,7 @@ jest.mock("../../assets/BannerVideo.mp4", () => "mockVideo.mp4");
 describe("Banner Component", () => {
   it("renders the video element and does not show Banner Overlay initially", () => {
     render(<Banner />);
-    const video = screen.getByRole("video");
+    const video = screen.getByTestId("video-element");
     expect(video).toBeInTheDocument();
 
     expect(screen.queryByText("Elevate your Style")).not.toBeInTheDocument();
@@ -15,7 +15,7 @@ describe("Banner Component", () => {
   it("Displays Banner Overlay when the video is played 70%", () => {
     render(<Banner />);
 
-    const video = screen.getByRole("video");
+    const video = screen.getByTestId("video-element");
 
     Object.defineProperty(video, "currentTime", { value: 7, writable: true });
     Object.defineProperty(video, "duration", { value: 10, writable: true });

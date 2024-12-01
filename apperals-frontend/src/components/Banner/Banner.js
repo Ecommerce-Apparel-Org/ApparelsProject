@@ -29,7 +29,7 @@ export const Banner = () => {
         disablePictureInPicture
         onTimeUpdate={handleTimeUpdate}
         controls={false}
-        role="video"
+        data-testid="video-element"
       >
         <source src={BannerVideo} type="video/mp4" />
         Your Browser does not support video

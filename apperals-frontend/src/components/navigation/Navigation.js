@@ -24,9 +24,9 @@ export default function Navigation() {
 
   return (
     <>
-      <div
+      <nav
         className={`container ${isSticky ? "sticky" : ""}`}
-        role="navigation"
+        data-testid="navigation-bar"
       >
         <div className="title">Fashion Fusion</div>
         <div className="button-row">
@@ -40,7 +40,7 @@ export default function Navigation() {
             Page 2
           </Link>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

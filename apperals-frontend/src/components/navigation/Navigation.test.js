@@ -30,7 +30,7 @@ describe("Navigation Component", () => {
       </Router>
     );
 
-    const container = screen.getByRole("navigation");
+    const container = screen.getByTestId("navigation-bar");
     expect(container).not.toHaveClass("sticky");
 
     act(() => {
@@ -48,7 +48,7 @@ describe("Navigation Component", () => {
       </Router>
     );
 
-    const container = screen.getByRole("navigation");
+    const container = screen.getByTestId("navigation-bar");
 
     act(() => {
       window.scrollY = 150;
