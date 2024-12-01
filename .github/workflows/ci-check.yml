@@ -39,26 +39,32 @@ jobs:
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
         run: npm test -- --coverage
+
+      # Step 7: Validate JSON (to catch structural errors)
+      - name: Validate JSON
+        working-directory: ./apperals-frontend
+        run: |
+          if ! jq -e . coverage/coverage-final.json > /dev/null 2>&1; then
+            echo "Invalid JSON in coverage-final.json"
+            exit 1
+          fi
         
-      # Step 7: Validate coverage threshold (Branch coverage only)
+      # Step 8: Validate coverage threshold (Branch coverage only)
       - name: Check Coverage Threshold
         working-directory: ./apperals-frontend
         run: |
           # Normalize paths (optional, but recommended)
           sed -i 's/\\/\//g' coverage/coverage-final.json 
 
-          # Print the contents of coverage-final.json for debugging
-          cat coverage/coverage-final.json
-
-          # Calculate the branch coverage with extra debugging output
-          COVERAGE=$(jq '.[] | 
+          # Calculate the branch coverage 
+          COVERAGE=$(jq '[ 
+            .[] | 
             (
               ((.b // {}) | to_entries | map(.value) | add) / 
               (if ((.b // {}) | length) > 0 then ((.b // {}) | length) else 1 end) * 100 
-            ), "Length of .b:", ((.b // {}) | length)' coverage/coverage-final.json)
-
-          echo "COVERAGE: $COVERAGE" 
-
+            )
+          ] | add / length' coverage/coverage-final.json)
+          
           # Set the required coverage percentage
           REQUIRED_COVERAGE=80
           
@@ -73,7 +79,7 @@ jobs:
             exit 1
           fi
 
-      # Step 8: Upload coverage reports as artifacts (optional)
+      # Step 9: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
         with:
