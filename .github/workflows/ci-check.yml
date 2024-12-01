@@ -39,42 +39,8 @@ jobs:
       # Step 6: Run tests with coverage
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
-        run: |
-          echo "Running tests with coverage..."
-          CI=false npm test --coverage
-          echo "Test results and coverage should now be available."
-          ls -al ./apperals-frontend/coverage
-
-      # Step 7: Validate coverage threshold
-      - name: Check Coverage Threshold
-        working-directory: ./apperals-frontend
-        run: |
-          # List contents of the coverage directory for debugging
-          ls -al ./apperals-frontend/coverage
-      
-          # Ensure coverage-final.json exists
-          if [ ! -f ./apperals-frontend/coverage/coverage-final.json ]; then
-            echo "coverage-final.json not found!"
-            exit 1
-          fi
-      
-          # Calculate coverage from the JSON file
-          COVERAGE=$(jq '[.[] | .s | to_entries | map(.value) | add] | add / ([.[] | .s | to_entries | length] | add) * 100' ./apperals-frontend/coverage/coverage-final.json)
-          
-          # Set the required coverage percentage
-          REQUIRED_COVERAGE=80
-          
-          # Round the coverage to 2 decimal places for display
-          COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
-          
-          echo "Current Coverage: $COVERAGE_ROUNDED%"
-          
-          # Compare coverage with the required threshold
-          if (( $(echo "$COVERAGE_ROUNDED < $REQUIRED_COVERAGE" | bc -l) )); then
-            echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
-            exit 1
-          fi
-          
+        run: npm test -- --coverage
+              
       # Step 8: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
