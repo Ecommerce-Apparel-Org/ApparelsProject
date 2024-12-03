@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import React from 'react';
 import Navigation from './components/Navigation';
+import BGImage from './components/BGImage';
 import './App.css';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <div className='App'>
       {/* add components here */}
       <Navigation />
+      <BGImage />
     </div>
   );
 }

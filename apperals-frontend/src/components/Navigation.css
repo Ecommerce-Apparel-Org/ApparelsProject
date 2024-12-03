@@ -18,7 +18,7 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgb(8, 0, 0);
+    color: rgb(0, 0, 0);
     margin: 0;
 }
   
@@ -57,20 +57,13 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
-    color: rgb(13, 108, 139);
+    color: rgb(77, 160, 188);
 }
 
 /* Hamburger Menu */
 .hamburger {
     /* Hidden by default */
     display: none;
-    /* flex-direction: column;
-    gap: 5px;
-    cursor: pointer; */
-    /* top left corner */
-    /* position: absolute; 
-    top: 20px;
-    left: 20px; */
 }
 
 /* Media query for hamburger */
@@ -80,11 +73,6 @@ nav a:hover {
         /* flex-grow: 1; */
         justify-content: center;
     }
-
-    /* header h1 {
-        flex-grow: 1;
-        text-align: center;
-    } */
 
     nav  {
         display: none;
@@ -101,19 +89,25 @@ nav a:hover {
     .hamburger-active {
         display: flex;
         flex-direction: column; /* Stack the navigation items vertically */
-        gap: 20px;
+        /* gap: 10px; */
         position: absolute;
-        top: 20px;
-        left: 30px;
-        width: 30%;
-        background-color: rgb(206, 184, 184);
-        padding: 10px 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        /* padding: 10px 0; */
         text-align: left;
     }
 
-    /* Make each list item a block element */
-    nav li {
-        display: flex;
+    .hamburger-active li {
+        display: block;
+        margin: 10px 10px;
+        padding: 10px;
+    }
+
+    .hamburger-active a {
         color: white;
     }
 }

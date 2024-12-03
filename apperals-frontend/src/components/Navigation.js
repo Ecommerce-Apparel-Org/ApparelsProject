@@ -12,8 +12,6 @@ const Navigation = () => {
     // Function to toggle the menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-        console.log("Menu open: ", isMenuOpen)
-        console.log('nav class:', document.querySelector('nav').className);
     };
 
     return (
