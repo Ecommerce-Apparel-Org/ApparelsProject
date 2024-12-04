@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 import {FaHome, FaTshirt, FaShoppingCart, FaUserAlt, FaAdjust, FaBars} from 'react-icons/fa';
 import { SlNotebook } from "react-icons/sl";
