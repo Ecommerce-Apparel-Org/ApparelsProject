@@ -1,15 +1,14 @@
-// import logo from './logo.svg';
 import React from 'react';
 import Navigation from './components/Navigation';
-import BGImage from './components/BGImage';
-import './App.css';
+// import BGImage from './components/BGImage';
+
 
 function App() {
   return (
     <div className='App'>
       {/* add components here */}
       <Navigation />
-      <BGImage />
+      {/* <BGImage /> */}
     </div>
   );
 }
