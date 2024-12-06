@@ -49,12 +49,6 @@ nav a {
     gap: 10px;
 }
 
-/* icons */
-/* nav a svg { */
-    /* Adjust the size of the icon */
-    /* font-size: 20px; 
-} */
-
 nav a:hover {
     text-decoration: underline;
     color: rgb(77, 160, 188);
@@ -70,7 +64,6 @@ nav a:hover {
 @media (max-width: 800px) {
     /* center header and align with hamburger menu */
     header {
-        /* flex-grow: 1; */
         justify-content: center;
     }
 
@@ -89,7 +82,6 @@ nav a:hover {
     .hamburger-active {
         display: flex;
         flex-direction: column; /* Stack the navigation items vertically */
-        /* gap: 10px; */
         position: absolute;
         top: 0;
         left: 0;
