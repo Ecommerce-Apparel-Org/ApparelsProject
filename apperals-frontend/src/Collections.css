@@ -1,0 +1,7 @@
+.collections-container {
+    display: grid;
+    background-color: rgb(253, 102, 102);
+    grid-template-columns: auto auto auto;
+    gap: 16px;
+    padding: 16px;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import Navigation from './components/Navigation';
-// import BGImage from './components/BGImage';
+import BGImage from './components/BGImage';
+import {Card} from './components/Card';
+import Collections from './Collections';
 
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
     <div className='App'>
       {/* add components here */}
       <Navigation />
-      {/* <BGImage /> */}
+      <BGImage />
     </div>
   );
 }
