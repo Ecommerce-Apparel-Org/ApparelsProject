@@ -1,5 +1,5 @@
 import React from "react";
-import {Card} from './components/Card.js';
+import {Card} from '../Card.js';
 
 const Collections = () => {
     return (

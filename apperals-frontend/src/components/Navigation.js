@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 import {FaHome, FaTshirt, FaShoppingCart, FaUserAlt, FaAdjust, FaBars} from 'react-icons/fa';
 import { SlNotebook } from "react-icons/sl";
@@ -14,6 +14,10 @@ const Navigation = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    }
+
     return (
         <header>
             {/* Title */}
@@ -27,19 +31,24 @@ const Navigation = () => {
             <nav className={isMenuOpen ? 'hamburger-active' : ''}> {/* display normally if false */}
                 <ul>
                     <li>
-                        <a href='/'><FaHome />Home</a>
+                        <Link to='/' onClick={closeMenu}><FaHome /> Home </Link>
+                        {/* <a href='/'><FaHome />Home</a> */}
                     </li>
                     <li>
-                        <a href='/collections'><SlNotebook />Collections</a>
+                        <Link to='/collections' onClick={closeMenu}><SlNotebook /> Collections </Link>
+                        {/* <a href='/collections'><SlNotebook />Collections</a> */}
                     </li>
                     <li>
-                        <a href='/customize'><FaTshirt />Customize Your Own T-Shirt</a>
+                        <Link to='/customize' onClick={closeMenu}><FaTshirt /> Customize Your Own T-Shirt </Link>
+                        {/* <a href='/customize'><FaTshirt />Customize Your Own T-Shirt</a> */}
                     </li>
                     <li>
-                        <a href='/cart'><FaShoppingCart />Cart</a>
+                        <Link to='/cart' onClick={closeMenu}><FaShoppingCart /> Cart </Link>
+                        {/* <a href='/cart'><FaShoppingCart />Cart</a> */}
                     </li>
                     <li>
-                        <a href='/profile'><FaUserAlt />Profile</a>
+                        <Link to='/profile' onClick={closeMenu}><FaUserAlt /> Profile </Link>
+                        {/* <a href='/profile'><FaUserAlt />Profile</a> */}
                     </li>
                 </ul>
             </nav>

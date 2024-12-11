@@ -1,17 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import BGImage from './components/BGImage';
-import {Card} from './components/Card';
-import Collections from './Collections';
+import Collections from './components/pages/Collections';
+import Home from './components/pages/Home';
 
 
 function App() {
   return (
-    <div className='App'>
-      {/* add components here */}
-      <Navigation />
-      <BGImage />
-    </div>
+    <Router>
+      <div>
+        {/* add components here */}
+        <Navigation />
+
+        {/* Define Routes here*/}
+        <Routes>
+          <Route path= '/' element={<Home />} />
+          <Route path="/collections" element={<Collections />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
