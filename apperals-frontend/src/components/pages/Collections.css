@@ -1,4 +1,6 @@
 .collections-container {
+    width: 100%;
+    height: 100%;
     display: grid;
     background-color: rgb(253, 102, 102);
     grid-template-columns: repeat(3, 1fr);

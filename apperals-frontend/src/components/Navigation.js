@@ -32,23 +32,18 @@ const Navigation = () => {
                 <ul>
                     <li>
                         <Link to='/' onClick={closeMenu}><FaHome /> Home </Link>
-                        {/* <a href='/'><FaHome />Home</a> */}
                     </li>
                     <li>
                         <Link to='/collections' onClick={closeMenu}><SlNotebook /> Collections </Link>
-                        {/* <a href='/collections'><SlNotebook />Collections</a> */}
                     </li>
                     <li>
                         <Link to='/customize' onClick={closeMenu}><FaTshirt /> Customize Your Own T-Shirt </Link>
-                        {/* <a href='/customize'><FaTshirt />Customize Your Own T-Shirt</a> */}
                     </li>
                     <li>
                         <Link to='/cart' onClick={closeMenu}><FaShoppingCart /> Cart </Link>
-                        {/* <a href='/cart'><FaShoppingCart />Cart</a> */}
                     </li>
                     <li>
                         <Link to='/profile' onClick={closeMenu}><FaUserAlt /> Profile </Link>
-                        {/* <a href='/profile'><FaUserAlt />Profile</a> */}
                     </li>
                 </ul>
             </nav>

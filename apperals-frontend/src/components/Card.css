@@ -24,8 +24,9 @@
     width: 80%;
     border-radius: 5px;
     padding: 0.5rem 1rem;
-    background-color: #2563eb;
-    color: white;
+    background-color: #ffffff;
+    border-color: rgb(34, 86, 199);
+    color: rgb(40, 91, 201);
     text-decoration: none;
     margin: 0.5rem;
 }

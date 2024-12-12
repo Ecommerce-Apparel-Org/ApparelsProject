@@ -1,5 +1,6 @@
 import React from "react";
 import {Card} from '../Card.js';
+import './Collections.css';
 
 const Collections = () => {
     return (
