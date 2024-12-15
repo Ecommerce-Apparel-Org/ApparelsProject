@@ -1,5 +1,5 @@
-import React from 'react'
-import backgroundImageTwo from '../assets/clothes_img.jpg'
+import React from 'react';
+import backgroundImageTwo from '../assets/clothes_img.jpg';
 import image from './BGImage.css';
 import { Link } from 'react-router-dom';
 

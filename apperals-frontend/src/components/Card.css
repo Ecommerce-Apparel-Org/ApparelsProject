@@ -15,7 +15,8 @@
 }
 
 .card-title, 
-.card-description {
+.card-description
+.card-price {
     margin: 0.5rem 5%;
 }
 

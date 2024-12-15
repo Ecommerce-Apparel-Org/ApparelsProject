@@ -1,12 +1,13 @@
 import React from "react";
 import './Card.css';
 
-export const Card = ({
+const Card = ({
     imgSrc,
     imgAlt, 
     productName,
     description,
     buttonText,
+    price,
     link
 }) => {
     return (
@@ -22,6 +23,7 @@ export const Card = ({
             }
             {productName && <h1 className="card-title">{productName}</h1>}
             {description && <p className="card-description">{description}</p>}
+            {price && <p className="card-price">{price}</p>}
             {
                 buttonText && link && (
                 <a href={link} className="card-btn">{buttonText}</a>
@@ -30,3 +32,5 @@ export const Card = ({
         </div>
     );
 }
+
+export default Card;
