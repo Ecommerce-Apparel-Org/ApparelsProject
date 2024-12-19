@@ -1,4 +1,3 @@
-
 name: PR Code Coverage and Build Check
 
 on:
@@ -21,10 +20,10 @@ jobs:
         run: echo "Changed working directory to apperals-frontend"
 
       # Step 3: Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16 # Use the Node.js version your app requires
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16 # Use the Node.js version your app requires
 
       # Step 4: Install dependencies
       - name: Install Dependencies
@@ -40,33 +39,43 @@ jobs:
       - name: Run Tests with Coverage
         working-directory: ./apperals-frontend
         run: npm test -- --coverage
-        
-      # Step 7: Validate coverage threshold
-      - name: Check Coverage Threshold
-        working-directory: ./apperals-frontend
+
+      # Step 7: Upload coverage report to Codecov
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          # Optional: Path to your coverage report file (default is `coverage/**/coverage-final.json`)
+          files: ./apperals-frontend/coverage/coverage-final.json
+          # Optional: Set the name of your coverage report, if it's different
+          name: coverage-report
+          # Optional: Additional flags for Codecov (e.g., flags to enforce thresholds)
+          flags: unittests
+
+      # Step 8: Enforce Coverage Threshold (using Codecov API)
+      - name: Enforce Coverage Threshold
         run: |
-          # Calculate the coverage
-          COVERAGE=$(jq '[.[] | .s | to_entries | map(.value) | add] | add / ([.[] | .s | to_entries | length] | add) * 100' coverage/coverage-final.json)
-          REQUIRED_COVERAGE=8 # Set your minimum required coverage percentage
-          echo "Current Coverage: $COVERAGE%"
+          # Fetch the coverage report from Codecov using the API with authentication
+          COVERAGE=$(curl -s --header "Authorization: token ${{ secrets.CODECOV_API_TOKEN }}" \
+          https://codecov.io/api/gh/NikhilRajivOke/ApparelsProject/commit/${{ github.sha }} | jq -r '.coverage')
           
-          # Set the required coverage percentage
-          REQUIRED_COVERAGE=8
-          
-          # Round the coverage to 2 decimal places for display
-          COVERAGE_ROUNDED=$(echo "$COVERAGE" | awk '{printf "%.2f", $1}')
-          
-          echo "Current Coverage: $COVERAGE_ROUNDED%"
-          
-          # Compare coverage with the required threshold
-          if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
-            echo "Code coverage is below the required threshold of $REQUIRED_COVERAGE%"
+          # Check if the coverage is fetched successfully
+          if [ -z "$COVERAGE" ]; then
+            echo "Error: Could not retrieve coverage data from Codecov"
             exit 1
           fi
-          
-      # Step 8: Upload coverage reports as artifacts (optional)
+
+          REQUIRED_COVERAGE=80
+          echo "Current Coverage: $COVERAGE%"
+
+          # Compare the current coverage with the required threshold
+          if (( $(echo "$COVERAGE < $REQUIRED_COVERAGE" | bc -l) )); then
+            echo "Coverage is below the required threshold of $REQUIRED_COVERAGE%"
+            exit 1
+          fi
+
+      # Step 9: Upload coverage reports as artifacts (optional)
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
         with:
           name: coverage-reports
-          path: ./apparels-frontend/coverage/
+          path: ./apperals-frontend/coverage/

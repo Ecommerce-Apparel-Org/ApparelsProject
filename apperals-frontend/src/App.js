@@ -1,25 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import Collections from './components/pages/Collections';
-import Home from './components/pages/Home';
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import AppRoutes from "./AppRoutes";
 
-
-function App() {
+export default function App() {
   return (
-    <Router>
-      <div>
-        {/* add components here */}
-        <Navigation />
-
-        {/* Define Routes here*/}
-        <Routes>
-          <Route path= '/' element={<Home />} />
-          <Route path="/collections" element={<Collections />} />
-        </Routes>
+    <>
+      <div className="App" role="main">
+        <AppRoutes></AppRoutes>
+        <Outlet />
       </div>
-    </Router>
+    </>
   );
 }
-
-export default App;
