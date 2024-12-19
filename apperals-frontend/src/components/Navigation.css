@@ -1,0 +1,106 @@
+header {
+    /* background-color: #282c34; */
+    color: rgb(0, 0, 0);
+    /* Adds space around the content inside the header */
+    padding: 20px 40px;
+    /* Make the header a flex container */
+    display: flex;
+    /* Align items at the start (left) */
+    justify-content: flex-start;
+    /* gap between items */
+    gap: 50px;
+    /* margin-top: 20px; */
+}
+
+/* for icon and title adjustment */
+header h1 {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+  
+nav ul {
+    /* Removes the bullet points */
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav li {
+    /* Align items horizontally */
+    display: inline-block; 
+    align-items: center; 
+    /* Adds horizontal spacing between the items */
+    margin: 0 30px; 
+    font-size: 18px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    /* text-decoration: none; */
+    font-size: 18px;
+    display: flex;           /* Use Flexbox to align icon and text horizontally */
+    align-items: center;     /* Vertically align icon and text */
+    gap: 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: rgb(77, 160, 188);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    /* Hidden by default */
+    display: none;
+}
+
+/* Media query for hamburger */
+@media (max-width: 800px) {
+    /* center header and align with hamburger menu */
+    header {
+        justify-content: center;
+    }
+
+    nav  {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+        cursor: pointer;
+        position: absolute; 
+        top: 20px;
+        left: 20px;
+    }
+
+    .hamburger-active {
+        display: flex;
+        flex-direction: column; /* Stack the navigation items vertically */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        /* padding: 10px 0; */
+        text-align: left;
+        z-index: 1000;
+    }
+
+    .hamburger-active li {
+        display: block;
+        margin: 10px 10px;
+        padding: 10px;
+    }
+
+    .hamburger-active a {
+        color: white;
+    }
+}
